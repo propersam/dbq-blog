@@ -39,6 +39,7 @@ I wrote a [DbScript](./dbScript/main.go) which populates a database with up *100
 CREATE TABLE benchmark(id int primary key auto_increment not null, name varchar(255) not null, timestamp timestamp not null);
 ```
 - *cd* into the [*dbScript*](./dbScript) directory
+- make sure your db connection details are already set in a *config.json* file
 - run the `go run main.go` command
 Just wait and your table will be populated with up to 100000 rows at 50hops of 2000 data insert per hop using **DBQ**
 
@@ -47,6 +48,8 @@ In the [*dbq-blog_test*](./dbq-blog_test.go) file, I wrote about five benchmark 
 
 **To Run the Benchmark Test**:
 - make sure you are in the root directory
+- make sure you have already set up *benchmark* Table and populated it with the script as directed above.
+- make sure your db connection details are already set in a *config.json* file
 - Run ```go test -bench .``` (This runs all the benchmark tests).
   Go to [Go's Documentation](https://golang.org/pkg/testing/) to see other options available for the benchmark command (e.g ```go test -bench . -benchtime=10x```)
  
