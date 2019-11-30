@@ -8,8 +8,6 @@ import (
 
 	"github.com/davecgh/go-spew/spew"
 	_ "github.com/go-sql-driver/mysql"
-	// "github.com/mitchellh/mapstructure"
-	// "github.com/rocketlaunchr/dbq"
 )
 
 func main() {
