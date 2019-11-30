@@ -43,7 +43,7 @@ CREATE TABLE benchmark(id int primary key auto_increment not null, name varchar(
 Just wait and your table will be populated with up to 100000 rows at 50hops of 2000 data insert per hop
 
 ### Benchmark Test
-In the (dbq-blog_test)[./dbq-blog_test.go] file, I wrote about five bencmark tests
+In the [*dbq-blog_test*](./dbq-blog_test.go) file, I wrote about five bencmark tests
 **To Run the Benchmark Test**:
 - make sure you are in the root directory
 - Run ```go test -bench .``` (This runs all the benchmark tests).
