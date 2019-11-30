@@ -8,12 +8,20 @@ import (
 	"testing"
 
 	"github.com/rocketlaunchr/dbq"
+	"github.com/tkanos/gonfig"
 )
 
 func BenchmarkSingleRowQueryWithoutDBQ(b *testing.B) {
+	dbConf := DbConfig{}
+	if err := gonfig.GetConf("./config.json", &dbConf); err != nil {
+		log.Fatalf("error while trying to load config.json file, err: %s", err)
+	}
+
 	ctx := context.Background()
 
-	mysqlInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true", "root", "db-key", "127.0.0.1", 3306, "dataframe")
+	mysqlInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true",
+		dbConf.User, dbConf.Password, dbConf.Host, dbConf.Port, dbConf.Database)
+
 	db, err := sql.Open("mysql", mysqlInfo)
 	if err != nil {
 		log.Fatal(err)
@@ -43,9 +51,15 @@ func BenchmarkSingleRowQueryWithoutDBQ(b *testing.B) {
 }
 
 func BenchmarkMultipleRowsQueryWithoutDBQ(b *testing.B) {
+	dbConf := DbConfig{}
+	if err := gonfig.GetConf("./config.json", &dbConf); err != nil {
+		log.Fatalf("error while trying to load config.json file, err: %s", err)
+	}
 	ctx := context.Background()
 
-	mysqlInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true", "root", "db-key", "127.0.0.1", 3306, "dataframe")
+	mysqlInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true",
+		dbConf.User, dbConf.Password, dbConf.Host, dbConf.Port, dbConf.Database)
+
 	db, err := sql.Open("mysql", mysqlInfo)
 	if err != nil {
 		log.Fatal(err)
@@ -90,9 +104,16 @@ func BenchmarkMultipleRowsQueryWithoutDBQ(b *testing.B) {
 }
 
 func BenchmarkSingleRowQueryWithDBQ(b *testing.B) {
+	dbConf := DbConfig{}
+	if err := gonfig.GetConf("./config.json", &dbConf); err != nil {
+		log.Fatalf("error while trying to load config.json file, err: %s", err)
+	}
+
 	ctx := context.Background()
 
-	mysqlInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true", "root", "db-key", "127.0.0.1", 3306, "dataframe")
+	mysqlInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true",
+		dbConf.User, dbConf.Password, dbConf.Host, dbConf.Port, dbConf.Database)
+
 	db, err := sql.Open("mysql", mysqlInfo)
 	if err != nil {
 		log.Fatal(err)
@@ -118,9 +139,16 @@ func BenchmarkSingleRowQueryWithDBQ(b *testing.B) {
 }
 
 func BenchmarkMultipleRowsQueryWithDBQ(b *testing.B) {
+	dbConf := DbConfig{}
+	if err := gonfig.GetConf("./config.json", &dbConf); err != nil {
+		log.Fatalf("error while trying to load config.json file, err: %s", err)
+	}
+
 	ctx := context.Background()
 
-	mysqlInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true", "root", "db-key", "127.0.0.1", 3306, "dataframe")
+	mysqlInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true",
+		dbConf.User, dbConf.Password, dbConf.Host, dbConf.Port, dbConf.Database)
+
 	db, err := sql.Open("mysql", mysqlInfo)
 	if err != nil {
 		log.Fatal(err)
@@ -144,9 +172,16 @@ func BenchmarkMultipleRowsQueryWithDBQ(b *testing.B) {
 }
 
 func BenchmarkMultipleRowsQueryWithDBQNoTimeParse(b *testing.B) {
+	dbConf := DbConfig{}
+	if err := gonfig.GetConf("./config.json", &dbConf); err != nil {
+		log.Fatalf("error while trying to load config.json file, err: %s", err)
+	}
+
 	ctx := context.Background()
 
-	mysqlInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true", "root", "db-key", "127.0.0.1", 3306, "dataframe")
+	mysqlInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true",
+		dbConf.User, dbConf.Password, dbConf.Host, dbConf.Port, dbConf.Database)
+
 	db, err := sql.Open("mysql", mysqlInfo)
 	if err != nil {
 		log.Fatal(err)
