@@ -70,4 +70,5 @@ In the [*dbq-blog_test*](./dbq-blog_test.go) file, I wrote about five benchmark 
  
 #### If you would Like to Help Adapt this repo to also work with PostgreSQL, a PR is highly welcome.
 This of course is a good task for beginners. By the time you go through this project and understand it well enough you can exercise yourself by adapting it to PostgreSQL. DBQ is compatible for both MySQL and PostgreSQL.
- 
+#### If you have better ways I could have implemented some of the functions in this project 
+I would really love to learn from your PR. :D
