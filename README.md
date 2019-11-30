@@ -1,7 +1,7 @@
 # dbq-blog
 
 ## About Project
-A quick project hosting all the codes I Wrote while writting the Blog about Dbq.
+A quick project hosting all the codes I Wrote while writting the [Blog about Dbq](https://medium.com/@propersam/golang-cutting-down-the-sql-boiler-plate-with-dbq-6ea8a6a31fc2).
 
 **To Run the Project as is**:
 - Setup up a Database (call it whatever you want)
