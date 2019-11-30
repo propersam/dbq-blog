@@ -11,12 +11,29 @@ import (
 	"github.com/Pallinder/go-randomdata"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/rocketlaunchr/dbq"
+	"github.com/tkanos/gonfig"
 )
 
+// DbConfig will be the env config struct to fetch and pass Db config in env
+type DbConfig struct {
+	User     string
+	Password string
+	Host     string
+	Port     int64
+	Database string
+}
+
 func main() {
+	dbConf := DbConfig{}
+	if err := gonfig.GetConf("../config.json", &dbConf); err != nil {
+		log.Fatalf("error while trying to load config.json file, err: %s", err)
+	}
+
 	ctx := context.Background()
 
-	mysqlInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true", "root", "db-key", "127.0.0.1", 3306, "dataframe")
+	mysqlInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true",
+		dbConf.User, dbConf.Password, dbConf.Host, dbConf.Port, dbConf.Database)
+
 	db, err := sql.Open("mysql", mysqlInfo)
 	if err != nil {
 		log.Fatal(err)
@@ -33,6 +50,7 @@ func main() {
 	// Insert Batch data of 100000 in total hops of 50 at 2000 per hop
 	totalDataNum := 100000 // Total number of data that is to be sent to db
 	maxBatchPerHop := 2000 // total number of row to insert per hop
+	tableName := "benchmark"
 
 	hCount := 0
 	total := 0
@@ -47,7 +65,7 @@ func main() {
 			hCount++
 			total += maxBatchPerHop
 
-			stmt = dbq.INSERT("benchmark", []string{"name"}, len(dataValues), dbq.MySQL)
+			stmt = dbq.INSERT(tableName, []string{"name"}, len(dataValues), dbq.MySQL)
 			dbq.MustE(ctx, db, stmt, nil, dataValues)
 
 			fmt.Printf("\n%d data inserted in hop %d\nTotal row Inserted: %d\n",
