@@ -53,3 +53,7 @@ In the [*dbq-blog_test*](./dbq-blog_test.go) file, I wrote about five benchmark 
 - Run ```go test -bench .``` (This runs all the benchmark tests).
   Go to [Go's Documentation](https://golang.org/pkg/testing/) to see other options available for the benchmark command (e.g ```go test -bench . -benchtime=10x```)
  
+ 
+ #### If you would Like to Help Adapt this repo to also work with PostgreSQl, a PR is highly welcome.
+ This ofcourse is a good task for beginners. By the time you go through this project and understand it well enough you can exercise yourself by adapting it to PostgreSQL. DBQ is compatible for both MySQL and PostgreSQL.
+ 
