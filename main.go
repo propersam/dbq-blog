@@ -8,12 +8,29 @@ import (
 
 	"github.com/davecgh/go-spew/spew"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/tkanos/gonfig"
 )
 
+// DbConfig will be the env config struct to fetch and pass Db config in env
+type DbConfig struct {
+	User     string
+	Password string
+	Host     string
+	Port     int64
+	Database string
+}
+
 func main() {
+	dbConf := DbConfig{}
+	if err := gonfig.GetConf("./config.json", &dbConf); err != nil {
+		log.Fatalf("error while trying to load config.json file, err: %s", err)
+	}
+
 	ctx := context.Background()
 
-	mysqlInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true", "root", "db-key", "127.0.0.1", 3306, "dataframe")
+	mysqlInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?parseTime=true",
+		dbConf.User, dbConf.Password, dbConf.Host, dbConf.Port, dbConf.Database)
+
 	db, err := sql.Open("mysql", mysqlInfo)
 	if err != nil {
 		log.Fatal(err)
