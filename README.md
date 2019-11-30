@@ -53,7 +53,21 @@ In the [*dbq-blog_test*](./dbq-blog_test.go) file, I wrote about five benchmark 
 - Run ```go test -bench .``` (This runs all the benchmark tests).
   Go to [Go's Documentation](https://golang.org/pkg/testing/) to see other options available for the benchmark command (e.g ```go test -bench . -benchtime=10x```)
  
+```goos: linux
+  goarch: amd64
+  pkg: dbq-blog
+  BenchmarkSingleRowQueryWithoutDBQ-2              	    2002	    530847 ns/op
+  BenchmarkMultipleRowsQueryWithoutDBQ-2           	       1	1235999600 ns/op
+  BenchmarkSingleRowQueryWithDBQ-2                 	    1916	    595392 ns/op
+  BenchmarkMultipleRowsQueryWithDBQ-2              	       1	8387918970 ns/op
+  BenchmarkMultipleRowsQueryWithDBQNoTimeParse-2   	       1	6083932760 ns/op
+  PASS
+  ok  	dbq-blog	18.119s
+```
+
+
+**Please, Do Note that**: Speed is not the only Factor to be considered. Although the Speed measurement can help guide your decision to use Dbq in any project or not but the NUMBER 1 reason to use dbq is for convenience and productivity - not for speed.
  
- #### If you would Like to Help Adapt this repo to also work with PostgreSQl, a PR is highly welcome.
- This of course is a good task for beginners. By the time you go through this project and understand it well enough you can exercise yourself by adapting it to PostgreSQL. DBQ is compatible for both MySQL and PostgreSQL.
+#### If you would Like to Help Adapt this repo to also work with PostgreSQL, a PR is highly welcome.
+This of course is a good task for beginners. By the time you go through this project and understand it well enough you can exercise yourself by adapting it to PostgreSQL. DBQ is compatible for both MySQL and PostgreSQL.
  
