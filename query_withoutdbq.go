@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
-	"database/sql"
 	"fmt"
 	"log"
 
+	sql "github.com/rocketlaunchr/mysql-go"
 )
 
 func singleRowQueryWithoutDbq(ctx context.Context, db *sql.DB, table string) interface{} {
@@ -22,7 +22,7 @@ func singleRowQueryWithoutDbq(ctx context.Context, db *sql.DB, table string) int
 }
 
 func multipleRowsQueryWithoutDbq(ctx context.Context, db *sql.DB, table string) interface{} {
-	
+
 	var results []interface{}
 	stmt := fmt.Sprintf("SELECT * FROM %s", table)
 

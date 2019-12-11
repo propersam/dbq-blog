@@ -2,13 +2,13 @@ package main
 
 import (
 	"context"
-	"database/sql"
 	"fmt"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/mitchellh/mapstructure"
 	"github.com/rocketlaunchr/dbq"
+	sql "github.com/rocketlaunchr/mysql-go"
 )
 
 func singleRowQueryWithDbq(ctx context.Context, db *sql.DB, table string) interface{} {

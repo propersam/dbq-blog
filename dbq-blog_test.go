@@ -2,12 +2,12 @@ package main
 
 import (
 	"context"
-	"database/sql"
 	"fmt"
 	"log"
 	"testing"
 
 	"github.com/rocketlaunchr/dbq"
+	sql "github.com/rocketlaunchr/mysql-go"
 	"github.com/tkanos/gonfig"
 )
 

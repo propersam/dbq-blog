@@ -2,12 +2,12 @@ package main
 
 import (
 	"context"
-	"database/sql"
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 
 	"github.com/rocketlaunchr/dbq"
+	sql "github.com/rocketlaunchr/mysql-go"
 )
 
 func singleRowInsertWithDbq(ctx context.Context, db *sql.DB) {

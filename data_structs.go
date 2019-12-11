@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"time"
 )
 
@@ -11,6 +12,18 @@ type store struct {
 	Quantity  int64      `dbq:"quantity"`
 	Available *bool      `dbq:"available"`
 	Timing    *time.Time `dbq:"timing"`
+}
+
+func (s *store) PostUnmarshal(ctx context.Context, row, count int) error {
+
+	loc, err := time.LoadLocation("Europe/Budapest")
+	if err != nil {
+		panic(err)
+	}
+	newTimeZone := s.Timing.In(loc)
+	s.Timing = &newTimeZone
+
+	return nil
 }
 
 type store2 struct {

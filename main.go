@@ -2,12 +2,12 @@ package main
 
 import (
 	"context"
-	"database/sql"
 	"fmt"
 	"log"
 
 	"github.com/davecgh/go-spew/spew"
 	_ "github.com/go-sql-driver/mysql"
+	sql "github.com/rocketlaunchr/mysql-go"
 	"github.com/tkanos/gonfig"
 )
 

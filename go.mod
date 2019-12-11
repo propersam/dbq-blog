@@ -10,6 +10,7 @@ require (
 	github.com/go-sql-driver/mysql v1.4.1
 	github.com/mitchellh/mapstructure v1.1.2
 	github.com/rocketlaunchr/dbq v1.1.5
+	github.com/rocketlaunchr/mysql-go v1.1.3
 	github.com/tkanos/gonfig v0.0.0-20181112185242-896f3d81fadf
 	golang.org/x/xerrors v0.0.0-20191011141410-1b5146add898 // indirect
 	gopkg.in/yaml.v2 v2.2.7 // indirect
